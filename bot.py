@@ -1,7 +1,9 @@
+import os
 import telebot
 from telebot import types
 
-bot = telebot.TeleBot("7086342977:AAE7pASZOadINLnmt_gCxZfwMQYDwwfRM04")
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+bot = telebot.TeleBot(BOT_TOKEN)
 
 # стартова команда
 @bot.message_handler(commands=['start'])
@@ -13,7 +15,6 @@ def start(message):
         types.InlineKeyboardButton("3", callback_data="3")
     )
     bot.send_message(message.chat.id, "Вибери цифру:", reply_markup=markup)
-
 
 # обробка натискань
 @bot.callback_query_handler(func=lambda call: True)
@@ -30,6 +31,5 @@ def callback(call):
         )
     elif len(call.data) == 2:
         bot.send_message(call.message.chat.id, f"Ти вибрав фінальний варіант: {call.data}")
-
 
 bot.polling(non_stop=True)
