@@ -1,9 +1,8 @@
-import os
 import telebot
 from telebot import types
 
-BOT_TOKEN = os.environ.get("BOT_TOKEN")
-bot = telebot.TeleBot(BOT_TOKEN)
+# Токен прямо в коді (для тесту)
+bot = telebot.TeleBot("7086342977:AAE7pASZOadINLnmt_gCxZfwMQYDwwfRM04")
 
 # стартова команда
 @bot.message_handler(commands=['start'])
